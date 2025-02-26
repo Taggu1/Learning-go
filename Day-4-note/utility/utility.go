@@ -11,13 +11,14 @@ func Input(text string) string {
 	fmt.Print(text)
 	reader := bufio.NewReader(os.Stdin)
 
-	val, err := reader.ReadString('\n')
+	text, err := reader.ReadString('\n')
 
 	if err != nil {
 		return ""
 	}
 
-	text = strings.
+	text = strings.TrimSuffix(text, "\n")
+	text = strings.TrimSuffix(text, "\r")
 
-	return val
+	return text
 }
