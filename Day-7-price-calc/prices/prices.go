@@ -12,10 +12,11 @@ func (job *TaxIncludedPriceJob) Process() {
 	taxIncludedPrices := make(map[string]float64, len(job.InputPrices))
 
 	for _, price := range job.InputPrices {
-		taxIncludedPrices[fmt.Sprintf("%.2f", price)] = price + (price * (1 + job.TaxRate))
+		taxIncludedPrices[fmt.Sprintf("%.2f", price)] = price * (1 + job.TaxRate)
 	}
 
 	job.TaxIncludedPrices = taxIncludedPrices
+	fmt.Println(taxIncludedPrices)
 }
 
 func NewTaxIncludedPriceJob(taxRate float64) *TaxIncludedPriceJob {
